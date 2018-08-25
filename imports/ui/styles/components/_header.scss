@@ -1,0 +1,17 @@
+.header {
+	background: $purple;
+	color: $white;
+}
+
+.header__content{
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	max-width: $max-size;
+	margin: 0 auto;
+	padding: $space;
+}
+
+.header__title{
+	margin: 0;
+}

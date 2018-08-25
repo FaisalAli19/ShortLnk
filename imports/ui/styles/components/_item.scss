@@ -1,0 +1,17 @@
+.item{
+	background: $light-grey;
+	border: 1px solid darken($light-grey, 8%);
+	margin-bottom: $space;
+	padding: $space;
+}
+
+.item__msg{
+	color: $dark-grey;
+}
+
+.item__no-link{
+	color: $dark-grey;
+	font-style: italic;
+	margin: 0;
+	text-align: center;
+}
