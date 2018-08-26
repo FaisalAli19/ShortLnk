@@ -30,6 +30,10 @@ class Login extends Component {
 
 		return false;
 	}
+	renderDisabledButton(){
+		return this.props.isPending ? <button className="button" disabled>Please wait...</button>
+			: <button className="button">Login</button>
+	}
   render() {
     return (
 			<div className="boxed-view">
@@ -39,7 +43,7 @@ class Login extends Component {
 					<form onSubmit={this.handleLogin} className="boxed-view__form">
 						<input type="email" name="email" placeholder="Email" />
 						<input type="password" name="password" placeholder="Password" />
-						<button className="button">Login</button>
+						{this.renderDisabledButton()}
 					</form>
 					<Link to="/signup">Create account</Link>
 				</div>
@@ -48,7 +52,7 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = ({ auth: { error} }) => ({ error });
+const mapStateToProps = ({ auth: { error, isPending } }) => ({ error, isPending });
 
 const mapDispatchToProps = dispatch => ({
 	loginUser: (value) => dispatch(loginUser(value))

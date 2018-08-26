@@ -11,7 +11,15 @@ import App from '../imports/ui/App';
 import appReducers from '../imports/ui/reducers';
 import './main.html';
 
-const store = createStore(appReducers, applyMiddleware(thunk, logger));
+const middleware = []
+
+if (Meteor.isProduction) {
+	middleware.push(thunk);
+}else{
+	middleware.push(thunk, logger);
+}
+
+const store = createStore(appReducers, applyMiddleware(...middleware));
 
 Meteor.startup(() => {
 	Modal.setAppElement(document.getElementById("app"));

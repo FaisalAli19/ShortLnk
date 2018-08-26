@@ -32,6 +32,10 @@ class Signup extends Component {
 
 		return false;
 	}
+	renderDisabledButton() {
+		return this.props.isPending ? <button className="button" disabled>Creating Account...</button>
+			: <button className="button">Create Account</button>
+	}
 	render() {
 		return (
 			<div className="boxed-view">
@@ -41,7 +45,7 @@ class Signup extends Component {
 					<form onSubmit={this.onFormSubmit} noValidate className="boxed-view__form">
 						<input type="email" name="email" placeholder="Email Id" />
 						<input type="password" name="password" placeholder="Password" />
-						<button className="button">Create Account</button>
+						{this.renderDisabledButton()}
 					</form>
 					<Link to="/">Have an account?</Link>
 				</div>
@@ -50,7 +54,7 @@ class Signup extends Component {
 	}
 }
 
-const mapStateToProps = ({ auth: { error } }) => ({ error })
+const mapStateToProps = ({ auth: { error, isPending } }) => ({ error, isPending })
 
 const mapDispatchToProps = dispatch => ({
 	createUser: (value) => dispatch(createUser(value))
